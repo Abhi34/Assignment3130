@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         justifyContent: 'space-between',
         height: 150,
-        alignSelf: 'flex-end',
+        alignSelf: 'center',
         width: '50%',
         marginRight: 15,
     }
