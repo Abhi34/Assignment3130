@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
+import {useNavigation} from '@react-navigation/native'
 
 import AppScreen from '../components/AppScreen';
 import AppText from '../components/AppText';
@@ -9,7 +10,7 @@ import AppButton from '../components/AppButton';
 
 
 
-function WelcomeScreen(props) {
+function WelcomeScreen({navigation}) {
     return (
         <AppScreen>
             <ImageBackground
@@ -27,9 +28,10 @@ function WelcomeScreen(props) {
                 </View>   
 
                 <View style = {styles.buttonContainer}>
-                    <AppButton title = "Login"/>
+                    <AppButton title = "Login" onPress={() => navigation.navigate("Login")}/>
                     <AppButton title = "Register" 
-                    color="secondaryColor"/>
+                    color="secondaryColor"
+                    onPress={() => navigation.navigate("Register")}/>
                 </View>  
                 
             </ImageBackground>
