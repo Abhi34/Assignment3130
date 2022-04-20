@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
+import { Formik } from 'formik';
 
 import AppButton from '../components/AppButton';
 import AppColors from '../config/AppColors';
@@ -8,9 +9,6 @@ import AppScreen from '../components/AppScreen';
 import AppTextInput from '../components/AppTextInput';
  
 function LoginScreen(props) {
-
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
 
     return (
        <AppScreen>
@@ -26,29 +24,37 @@ function LoginScreen(props) {
                             color = {AppColors.tertiaryColor}
                         />
                 </View>   
+                <Formik
+                    initialValues={{email:'', password:''}}  
+                    onSubmit = {values => console.log(values)}  
+                        >
+                            {({handleChange, handleSubmit}) => (
+                                <>  
+                                    <View style = {styles.textInputContainer}>
+                                        <AppTextInput
+                                            autoCapatalize="none"
+                                            autoCorrect={false}
+                                            icon = "email"
+                                            placeholder="Email Address"
+                                            keyboardType="email-address"
+                                            textContentType="emailAddress"
+                                            onChangeText = {handleChange("email")}/>
+                                        <AppTextInput
+                                            autoCapatalize="none"
+                                            autoCorrect={false}
+                                            icon = "lock"
+                                            placeholder="Password"
+                                            secureTextEntry={true}
+                                            textContentType="password"
+                                            onChangeText = {handleChange("password")}/>      
+                                    </View>
 
-                <View style = {styles.textInputContainer}>
-                        <AppTextInput
-                            autoCapatalize="none"
-                            autoCorrect={false}
-                            icon = "email"
-                            placeholder="Email Address"
-                            keyboardType="email-address"
-                            textContentType="emailAddress"
-                            onChangeText = {userInputEmail => setEmail(userInputEmail)}/>
-                        <AppTextInput
-                            autoCapatalize="none"
-                            autoCorrect={false}
-                            icon = "lock"
-                            placeholder="Password"
-                            secureTextEntry={true}
-                            textContentType="password"
-                            onChangeText = {userInputPassword => setPassword(userInputPassword)}/>      
-                </View>
-
-                <View style = {styles.buttonContainer}> 
-                    <AppButton title = "Login" color="primaryColor" onPress = {() => console.log(email, password)}/>
-                </View>
+                                    <View style = {styles.buttonContainer}> 
+                                        <AppButton title = "Login" color="primaryColor" onPress = {handleSubmit}/>
+                                    </View>
+                                </>
+                            )} 
+                </Formik>
             </ImageBackground> 
        </AppScreen>
     );
