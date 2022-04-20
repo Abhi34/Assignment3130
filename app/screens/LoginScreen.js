@@ -2,11 +2,20 @@ import React, {useState} from 'react';
 import {View, StyleSheet, ImageBackground} from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import { Formik } from 'formik';
+import * as Yup from 'yup';
 
 import AppButton from '../components/AppButton';
 import AppColors from '../config/AppColors';
+import AppErrorMessgage from '../components/AppErrorMessage';
 import AppScreen from '../components/AppScreen';
 import AppTextInput from '../components/AppTextInput';
+
+const schema = Yup.object().shape(
+    {
+        email: Yup.string().required().email().label("Email"),
+        password: Yup.string().required().min(4).max(12).label("Password"),
+    }
+);
  
 function LoginScreen(props) {
 
@@ -26,9 +35,10 @@ function LoginScreen(props) {
                 </View>   
                 <Formik
                     initialValues={{email:'', password:''}}  
-                    onSubmit = {values => console.log(values)}  
+                    onSubmit = {values => console.log(values)} 
+                    validationSchema = {schema} 
                         >
-                            {({handleChange, handleSubmit}) => (
+                            {({handleChange, handleSubmit, errors, setFieldTouched, touched}) => (
                                 <>  
                                     <View style = {styles.textInputContainer}>
                                         <AppTextInput
@@ -38,7 +48,9 @@ function LoginScreen(props) {
                                             placeholder="Email Address"
                                             keyboardType="email-address"
                                             textContentType="emailAddress"
+                                            onBlur = {() => setFieldTouched("email")}
                                             onChangeText = {handleChange("email")}/>
+                                           {touched.email && <AppErrorMessgage>{errors.email}</AppErrorMessgage>}
                                         <AppTextInput
                                             autoCapatalize="none"
                                             autoCorrect={false}
@@ -46,7 +58,9 @@ function LoginScreen(props) {
                                             placeholder="Password"
                                             secureTextEntry={true}
                                             textContentType="password"
-                                            onChangeText = {handleChange("password")}/>      
+                                            onBlur = {() => setFieldTouched("password")}
+                                            onChangeText = {handleChange("password")}/>  
+                                            {touched.password && <AppErrorMessgage>{errors.password}</AppErrorMessgage>}
                                     </View>
 
                                     <View style = {styles.buttonContainer}> 
