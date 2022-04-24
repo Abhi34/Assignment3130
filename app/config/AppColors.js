@@ -4,5 +4,5 @@ export default {
     primaryColor:'lightblue',
     secondaryColor:'tan',
     tertiaryColor:'grey',
-    otherColor:'lightgreen',
+    otherColor:'#F7F9F9',
 }

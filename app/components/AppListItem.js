@@ -3,13 +3,14 @@ import { StyleSheet, View, Image} from 'react-native';
 
 import AppText from './AppText';
 
-function AppListItem({image, title, subtitle}) {
+function AppListItem({image, title, subtitle, IconComponent}) {
     return (
         <View style = {styles.container}>
-            <Image source={image} style = {styles.image}/>
+            {IconComponent}
+            {image && <Image source={image} style = {styles.image}/>}
             <View style = {styles.textContainer}>
                 <AppText style = {styles.header}>{title}</AppText>
-                <AppText style = {styles.body}>{subtitle}</AppText>
+                {subtitle && <AppText style = {styles.body}>{subtitle}</AppText>}
             </View>
         </View>
     );
