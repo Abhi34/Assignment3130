@@ -1,9 +1,10 @@
 import React from 'react';
-import { StyleSheet, ImageBackground, View } from 'react-native'
-import {MaterialCommunityIcons} from '@expo/vector-icons'
+import { StyleSheet, ImageBackground, View } from 'react-native';
+import {MaterialCommunityIcons} from '@expo/vector-icons';
 
 import AppColors from '../config/AppColors';
 import AppScreen from '../components/AppScreen';
+import AppListItem from '../components/AppListItem';
 
 function AccountScreen(props) {
     return (
@@ -16,9 +17,14 @@ function AccountScreen(props) {
                             <MaterialCommunityIcons
                                 name = "camera-image" 
                                 size = {60}
-                                color = {AppColors.tertiaryColor}
+                                color = {AppColors.tertiaryColor} 
                             />
                     </View> 
+
+                    <View style = {styles.profileContainer}>
+                        <AppListItem image = {require("../assets/WillSmith.jpg")} title = "Will Smith" subtitle="willsmith@slapme.com"/>
+                    </View>  
+
             </ImageBackground>
         </AppScreen>
     );
@@ -32,6 +38,9 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems: 'center',
         marginTop:25, 
+    },
+    profileContainer: {
+       marginTop: 100,
     },
 })
 
