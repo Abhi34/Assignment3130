@@ -11,8 +11,8 @@ function MemoriesScreen(props) {
     return (
         <AppScreen style = {styles.container}>
             <AppCard 
-            title = "harry potter" 
-            subtitle="read on march 2020"
+            title = "Family" 
+            subtitle="created on march 2020"
             image = {require("../assets/potter.jpg")}/>
         </AppScreen>
     );
