@@ -19,7 +19,7 @@ const schema = Yup.object().shape(
     }
 );
  
-function RegisterScreen(props) {
+function RegisterScreen({navigation}) {
 
     return (
         <AppScreen>
@@ -36,7 +36,9 @@ function RegisterScreen(props) {
                 </View> 
                 <Formik
                      initialValues={{name:'', email:'', password:'', rePassword:''}}  
-                     onSubmit = {values => console.log(values)} 
+                     onSubmit = {values => 
+                        {console.log(values);
+                        navigation.navigate("Account")}} 
                      validationSchema = {schema} 
                         >
                             {({handleChange, handleSubmit, errors,  setFieldTouched, touched}) => (

@@ -5,6 +5,7 @@ import AppScreen from '../components/AppScreen';
 import AppListItem from '../components/AppListItem';
 import AppColors from '../config/AppColors';
 import AppIcon from '../components/AppIcon';
+import { NavigationContainer } from '@react-navigation/native';
 
 
 const memories = [
@@ -19,9 +20,9 @@ const memories = [
         image : require("../assets/icon.png")
     }
 ]
-function MemoriesListScreen(props) {
+function MemoriesListScreen({navigation}) {
     return (
-        <AppScreen>
+        <AppScreen style = {styles.random}>
             <ImageBackground 
                 source = {require("../assets/myMemoryBackground.jpg")}
                 style = {styles.background}
@@ -34,7 +35,7 @@ function MemoriesListScreen(props) {
                                 <AppListItem 
                                     title={item.name}
                                     image={item.image}
-                                    onPress = {() => console.log(item)}
+                                    onPress = {() => navigation.navigate("MoreInfo")}
                                     swipe = {() => {<View style = {styles.deleteView}>
                                                         <AppIcon name ="trash-can" iconColor={AppColors.primaryColor} backgroundColor={AppColors.secondaryColor}/>
                                                     </View>}}
@@ -52,9 +53,13 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     deleteView: {
-        backgroundColor: AppColors.primaryColor,
-        width: 75,
+        backgroundColor: AppColors.black,
+        width:10,
+        height:20,
     },
+    random: {
+        marginTop: 5,
+    }
 })
 
 export default MemoriesListScreen;

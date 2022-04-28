@@ -5,19 +5,18 @@ import LoginScreen from '../screens/LoginScreen';
 import RegisterScreen from '../screens/RegisterScreen';
 import WelcomeScreen from '../screens/WelcomeScreen';
 import AccountScreen from '../screens/AccountScreen';
-import TabNavigator from './TabNavigator';
+import TabNaigator from './TabNavigator';
+import MemoriesListScreen from '../screens/MemoriesListScreen';
 import MoreInfo from '../screens/MoreInfo';
 
 
 const AppStack = createStackNavigator();
 
 const AuthNavigator = () => (                                                   
-    <AppStack.Navigator>
-        <AppStack.Screen name ="Welcome" component={WelcomeScreen} options={{headerShown:false}}/>
-        <AppStack.Screen name ="Login" component={LoginScreen} options={{headerShown:false}}/> 
-        <AppStack.Screen name ="Register" component={RegisterScreen} options={{headerShown:false}}/>  
-        <AppStack.Screen name ="Account" component={TabNavigator} options={{headerShown:false}}/>  
-        <AppStack.Screen name ="MoreInfo" component={MoreInfo} options={{headerShown:false}}/>  
+    <AppStack.Navigator mode = "modal"> 
+        <AppStack.Screen name ="Account" component={AccountScreen} options={{headerShown:false}}/>
+        <AppStack.Screen name ="My Memories" component={MemoriesListScreen} options={{headerShown:false}}/> 
+        <AppStack.Screen name ="MoreInfo" component={MoreInfo} options={{headerShown:false}}/> 
     </AppStack.Navigator>                                                                           
 )
 

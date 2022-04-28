@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useHook} from 'react';
 import { StyleSheet, ImageBackground, View } from 'react-native';
 import {MaterialCommunityIcons} from '@expo/vector-icons';
 
@@ -7,9 +7,10 @@ import AppIcon from '../components/AppIcon';
 import AppScreen from '../components/AppScreen';
 import AppListItem from '../components/AppListItem';
 
-function AccountScreen(props) {
+function AccountScreen({navigation, route}) {
+    console.log(route.params);
     return (
-        <AppScreen>
+        <AppScreen style = {styles.random}>
             <ImageBackground 
                 source = {require("../assets/myMemoryBackground.jpg")}
                 style = {styles.background}
@@ -23,12 +24,11 @@ function AccountScreen(props) {
                     </View> 
 
                     <View style = {styles.profileContainer}>
-                        <AppListItem image = {require("../assets/WillSmith.jpg")} title = "Will Smith" subtitle="willsmith@slapme.com"/>
+                        <AppListItem image = {require("../assets/WillSmith.jpg")} title = {route.params.paramName} subtitle={route.params.paramEmail}/>
                     </View>  
 
                     <View style = {styles.linksContainer}>
-                        <AppListItem title = "My memories" IconComponent={<AppIcon name="panorama" size = {50} iconColor = {AppColors.tertiaryColor} backgroundColor = {AppColors.secondaryColor}/>}/>
-                        <AppListItem title = "My favourites" IconComponent={<AppIcon name="heart" size = {50} iconColor = {AppColors.tertiaryColor} backgroundColor = {AppColors.secondaryColor}/>}/>
+                        <AppListItem title = "My memories" IconComponent={<AppIcon name="panorama" size = {50} iconColor = {AppColors.tertiaryColor} backgroundColor = {AppColors.secondaryColor}/>} onPress = {() => navigation.navigate("My Memories")}/>
                     </View>
             </ImageBackground>
         </AppScreen>
@@ -55,6 +55,9 @@ const styles = StyleSheet.create({
         marginVertical: 75,
         height:150,
         justifyContent: "space-around"
+    },
+    random : {
+        marginTop: -30,
     }
 })
 

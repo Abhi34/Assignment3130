@@ -12,7 +12,7 @@ import AppButton from '../components/AppButton';
 
 function WelcomeScreen({navigation}) {
     return (
-        <AppScreen>
+        <AppScreen style = {styles.random}>
             <ImageBackground
                 source = {require("../assets/myMemoryBackground.jpg")}
                 style = {styles.background}
@@ -56,6 +56,9 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: '50%',
         marginRight: 15,
+    },
+    random:{
+        marginTop:-30,
     }
 })
 
